@@ -71,7 +71,7 @@ cd apps/app
 flutter pub get
 flutter run -d windows
 # 或连接 Android 设备后
-flutter run -d android
+flutter run
 ```
 
 多开 Windows 客户端调试时可使用独立 profile：
@@ -93,9 +93,9 @@ flutter build web --release --no-web-resources-cdn
 一键打包（Windows，产物在 `dist/`）：
 
 ```powershell
-pwsh tools/package.ps1
+powershell -ExecutionPolicy Bypass -File tools/package.ps1
 # 已有构建产物时只重新打包：
-pwsh tools/package.ps1 -SkipBuild
+powershell -ExecutionPolicy Bypass -File tools/package.ps1 -SkipBuild
 ```
 
 Android 发布签名：在 `apps/app/android/key.properties` 中配置自己的 keystore。该文件和 `*.jks` 已被 `.gitignore` 排除，请勿提交。没有签名配置时，release 构建会回退到调试签名。
