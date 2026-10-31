@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lihongbo-learn.github.io/SchoolLink/sitemap.xml

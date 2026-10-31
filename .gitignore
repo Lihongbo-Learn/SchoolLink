@@ -1,0 +1,30 @@
+# Flutter / Dart
+**/build/
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+**/ephemeral/
+**/ios/Flutter/.last_build_id
+*.iml
+*.symbols
+
+# Local development data and packaged output
+.dev/
+dist/
+data/
+/tools/e2e/
+*.log
+
+# Secrets and signing material
+**/key.properties
+**/local.properties
+*.jks
+*.keystore
+*.p12
+
+# IDE and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

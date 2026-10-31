@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>校联 SchoolLink — 校园局域网通知与文件分发</title>
+  <meta name="description" content="校联 SchoolLink 是面向校园局域网的开源通知与文件分发系统：教师发送全屏通知、文件和普通消息，教室大屏自动接收、留存历史。支持 Windows、Android 与 Web。">
+  <link rel="canonical" href="https://lihongbo-learn.github.io/SchoolLink/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="校联 SchoolLink — 让通知抵达每一块教室大屏">
+  <meta property="og:description" content="校园局域网通知与文件分发系统。全屏通知、文件自动接收、通知与聊天分离，Windows / Android / Web 多端可用，开源可自部署。">
+  <meta property="og:url" content="https://lihongbo-learn.github.io/SchoolLink/">
+  <meta property="og:image" content="https://lihongbo-learn.github.io/SchoolLink/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="校联 SchoolLink">
+  <meta name="twitter:description" content="校园局域网通知与文件分发系统，开源可自部署。">
+  <meta name="twitter:image" content="https://lihongbo-learn.github.io/SchoolLink/assets/og-image.png">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "校联 SchoolLink",
+    "operatingSystem": "Windows, Android, Web",
+    "applicationCategory": "EducationalApplication",
+    "description": "面向校园局域网的通知与文件分发系统。",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
+    "license": "https://opensource.org/licenses/MIT",
+    "url": "https://lihongbo-learn.github.io/SchoolLink/",
+    "downloadUrl": "https://github.com/Lihongbo-Learn/SchoolLink/releases"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="校联 SchoolLink 首页">
+        <img src="assets/app-icon.png" width="38" height="38" alt="">
+        <span class="brand-text">
+          <strong>校联</strong>
+          <span>SchoolLink</span>
+        </span>
+      </a>
+
+      <nav class="nav" id="siteNav" aria-label="主导航">
+        <a href="#features">功能</a>
+        <a href="#modes">教室与教师</a>
+        <a href="#downloads">下载</a>
+        <a href="#deploy">部署</a>
+        <a class="nav-github" href="https://github.com/Lihongbo-Learn/SchoolLink" target="_blank" rel="noopener">
+          GitHub
+          <span aria-hidden="true">↗</span>
+        </a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="button button-primary button-small" href="#downloads">获取应用</a>
+        <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="打开导航">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="grid-fade"></div>
+      </div>
+
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">
+            <span class="pulse" aria-hidden="true"></span>
+            0.2.0 开发预览 · 开源 · MIT
+          </div>
+          <h1>让通知抵达<br><span class="mark">每一块教室大屏</span></h1>
+          <p class="lede">
+            校联 SchoolLink 是面向校园局域网的通知与文件分发系统。教师发送全屏通知、文件和普通消息，教室大屏自动接收并留存历史，不打断课堂。
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/Lihongbo-Learn/SchoolLink/releases/download/v0.2.0-dev/SchoolLink-Setup-0.2.0_dev.exe">
+              下载 Windows 版
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
+            </a>
+            <a class="button button-soft" href="https://github.com/Lihongbo-Learn/SchoolLink/releases/download/v0.2.0-dev/SchoolLink-Android.apk">
+              下载 Android APK
+            </a>
+            <a class="button button-ghost" href="https://github.com/Lihongbo-Learn/SchoolLink" target="_blank" rel="noopener">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.86c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.8c.85 0 1.71.11 2.51.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.35 4.69-4.58 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+              查看源码
+            </a>
+          </div>
+
+          <ul class="hero-meta" aria-label="支持平台">
+            <li>Windows 10/11</li>
+            <li>Android 7+</li>
+            <li>Web</li>
+            <li>局域网运行</li>
+          </ul>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="logo-stage" aria-hidden="true">
+            <div class="halo"></div>
+            <div class="ring ring-1"></div>
+            <div class="ring ring-2"></div>
+            <div class="logo-tile">
+              <img src="assets/app-icon.png" width="512" height="512" alt="">
+            </div>
+
+            <div class="orbit-chip chip-notice">
+              <span class="chip-icon tone-amber">
+                <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
+              </span>
+              <span><strong>全屏通知</strong><small>手动确认 / 自动关闭</small></span>
+            </div>
+
+            <div class="orbit-chip chip-file">
+              <span class="chip-icon tone-green">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg>
+              </span>
+              <span><strong>文件自动接收</strong><small>无需学生确认</small></span>
+            </div>
+
+            <div class="orbit-chip chip-platform">
+              <span class="chip-dot"></span>
+              Windows · Android · Web
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="strip">
+      <div class="container strip-inner">
+        <p>为教室大屏与教师日常沟通而设计</p>
+        <ul>
+          <li>无需公网</li>
+          <li>文件自动接收</li>
+          <li>通知与聊天分离</li>
+          <li>开源可自部署</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">核心能力</div>
+          <h2>通知、文件、会话，一套系统</h2>
+          <p>从教师点击发送，到教室大屏亮起，再到文件落盘保存，整条链路在校园局域网内完成。</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card reveal">
+            <span class="feature-icon tone-amber">
+              <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
+            </span>
+            <h3>全屏通知</h3>
+            <p>教师发送时逐条选择“手动确认关闭”或 N 秒自动关闭，可附带提示音。只有通知类型会触发全屏。</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <span class="feature-icon tone-green">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M12 18v-6m0 0-3 3m3-3 3 3"/></svg>
+            </span>
+            <h3>文件自动接收</h3>
+            <p>教师上传一次，教室端自动保存，无需学生确认。文件经 Hub 分发给单个班级或全部任教班级。</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <span class="feature-icon tone-blue">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.5"/><path d="M5 12a7 7 0 0 1 7-7m7 7a7 7 0 0 1-7 7M3 12a9 9 0 0 1 9-9m9 9a9 9 0 0 1-9 9"/></svg>
+            </span>
+            <h3>混合网络</h3>
+            <p>原生端优先通过局域网直连传递消息，同时向 Hub 归档；直连不可用时自动走 Hub，断网后重新补齐。</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <span class="feature-icon tone-rose">
+              <svg viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H7l-4 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"/><path d="M8 9h8M8 13h5"/></svg>
+            </span>
+            <h3>聊天与通知分离</h3>
+            <p>普通消息和教室回复永不触发全屏。历史按老师归档，谁发过什么、谁确认过，都能回看。</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <span class="feature-icon tone-slate">
+              <svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 3v18M13 8h4M13 12h4M13 16h4"/></svg>
+            </span>
+            <h3>教室模式锁定</h3>
+            <p>首次启动选择年级与班级，确认后不可在界面更改。避免误触切换，卸载重装才能重置。</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <span class="feature-icon tone-indigo">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01M17 7.5h.01M17 16.5h.01"/></svg>
+            </span>
+            <h3>常开 Hub</h3>
+            <p>纯 Dart 服务，负责账号、花名册、消息、文件、Web 托管与离线补发。Windows 与 Linux 均可部署。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="modes">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">两种模式</div>
+          <h2>教室端专注接收，教师端专注发送</h2>
+          <p>同一套客户端选择不同用途。教室端不出现复杂入口，教师端覆盖日常沟通和通知。</p>
+        </div>
+
+        <div class="modes-grid">
+          <article class="mode-card reveal">
+            <div class="mode-body">
+              <span class="badge badge-green">教室端</span>
+              <h3>大屏只做一件事：不错过通知</h3>
+              <ul class="check-list">
+                <li>全屏通知，手动或自动关闭</li>
+                <li>自动接收并保存教师文件</li>
+                <li>按老师查看会话与通知历史</li>
+                <li>可全屏预览重要通知</li>
+              </ul>
+            </div>
+            <span class="mode-glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
+            </span>
+            <div class="mode-note">
+              <span>Windows 大屏优先</span>
+              <span>教室端</span>
+            </div>
+          </article>
+
+          <article class="mode-card mode-card-dark reveal">
+            <div class="mode-body">
+              <span class="badge badge-light">教师端</span>
+              <h3>一个入口，覆盖单班与全部班级</h3>
+              <ul class="check-list">
+                <li>姓名 + PIN 登录，仅显示任教班级</li>
+                <li>普通消息、全屏通知、文件一次发送</li>
+                <li>逐条设置关闭方式与提示音</li>
+                <li>发送记录与教室回复集中保存</li>
+              </ul>
+            </div>
+            <span class="mode-glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4Z"/></svg>
+            </span>
+            <div class="mode-note">
+              <span>Windows / Android</span>
+              <span>教师端</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="downloads">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">获取应用</div>
+          <h2>选择你的平台</h2>
+          <p>当前为 0.2.0 开发预览版本。教室大屏推荐 Windows，教师可选 Windows 或 Android，Web 由 Hub 直接托管。</p>
+        </div>
+
+        <div class="download-grid">
+          <article class="download-card download-card-primary reveal">
+            <div class="download-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 5h8v6H3zm10 0h8v6h-8zM3 13h8v6H3zm10 0h8v6h-8z"/></svg>
+            </div>
+            <h3>Windows</h3>
+            <p>教室端 / 教师端 / Hub 一体安装</p>
+            <span class="file-meta">安装包 · 约 54 MB · Windows 10/11 x64</span>
+            <a class="button button-light" href="https://github.com/Lihongbo-Learn/SchoolLink/releases/download/v0.2.0-dev/SchoolLink-Setup-0.2.0_dev.exe">
+              下载安装包
+            </a>
+          </article>
+
+          <article class="download-card reveal">
+            <div class="download-icon tone-green">
+              <svg viewBox="0 0 24 24"><path d="M7 9h10v8a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3Zm-3 0h2v8H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2Zm16 0h2a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2ZM8 5l-1.5-3M16 5l1.5-3M9 7h.01M15 7h.01"/></svg>
+            </div>
+            <h3>Android</h3>
+            <p>教师端 APK，适合手机与平板</p>
+            <span class="file-meta">Universal APK · 约 70 MB · Android 7+</span>
+            <a class="button button-soft" href="https://github.com/Lihongbo-Learn/SchoolLink/releases/download/v0.2.0-dev/SchoolLink-Android.apk">
+              下载 APK
+            </a>
+          </article>
+
+          <article class="download-card reveal">
+            <div class="download-icon tone-blue">
+              <svg viewBox="0 0 24 24"><path d="M4 5h16v11H4zM9 20h6M12 16v4"/><path d="M8 9l2 2-2 2M13 13h3"/></svg>
+            </div>
+            <h3>Linux Hub</h3>
+            <p>一键脚本 + Web + 可选源码编译</p>
+            <span class="file-meta">tar.gz · 约 25 MB · systemd / ufw / firewalld</span>
+            <a class="button button-soft" href="https://github.com/Lihongbo-Learn/SchoolLink/releases/download/v0.2.0-dev/SchoolLinkHub-linux.tar.gz">
+              下载 Hub
+            </a>
+          </article>
+
+          <article class="download-card reveal">
+            <div class="download-icon tone-slate">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
+            </div>
+            <h3>Web</h3>
+            <p>无需安装，打开 Hub 地址即用</p>
+            <span class="file-meta">由 Hub 托管 · 推荐 Edge / Chrome</span>
+            <a class="button button-soft" href="https://github.com/Lihongbo-Learn/SchoolLink#部署到学校">查看部署说明</a>
+          </article>
+        </div>
+
+        <p class="download-note reveal">
+          所有版本、哈希校验和与历史记录：
+          <a href="https://github.com/Lihongbo-Learn/SchoolLink/releases" target="_blank" rel="noopener">GitHub Releases ↗</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section deploy-section" id="deploy">
+      <div class="container">
+        <div class="deploy-card reveal">
+          <div class="deploy-copy">
+            <div class="section-kicker">快速开始</div>
+            <h2>一台常开电脑，就是一个 Hub</h2>
+            <p>把 Hub 部署在教室内或机房的一台常开电脑上，教室端与教师端连接它即可。网页端也由 Hub 直接提供。</p>
+            <a class="button button-primary" href="https://github.com/Lihongbo-Learn/SchoolLink#快速开始">
+              阅读部署文档
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+            </a>
+          </div>
+
+          <ol class="steps">
+            <li>
+              <span class="step-number">01</span>
+              <div><h3>启动 Hub</h3><p>Windows 运行安装包内的 Hub，或使用 Linux 一键脚本。</p></div>
+            </li>
+            <li>
+              <span class="step-number">02</span>
+              <div><h3>配置教室端</h3><p>首次启动选择年级与班级，并连接 Hub 地址。</p></div>
+            </li>
+            <li>
+              <span class="step-number">03</span>
+              <div><h3>教师登录</h3><p>姓名 + PIN 登录，选择任教班级后即可发送。</p></div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="notice-banner reveal" role="note">
+          <span class="notice-mark" aria-hidden="true">!</span>
+          <div>
+            <strong>这是 0.2.0 开发预览版本。</strong>
+            教室模式、通知关闭与局域网直连仍在持续打磨。遇到问题或有建议，欢迎在
+            <a href="https://github.com/Lihongbo-Learn/SchoolLink/issues" target="_blank" rel="noopener">GitHub Issues</a>
+            反馈。
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand brand-light" href="#top">
+          <img src="assets/app-icon.png" width="38" height="38" alt="">
+          <span class="brand-text"><strong>校联</strong><span>SchoolLink</span></span>
+        </a>
+        <p>校园局域网通知与文件分发系统。<br>数据由你自己的 Hub 保存。</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/Lihongbo-Learn/SchoolLink" target="_blank" rel="noopener">源代码</a>
+        <a href="https://github.com/Lihongbo-Learn/SchoolLink/releases" target="_blank" rel="noopener">Releases</a>
+        <a href="https://github.com/Lihongbo-Learn/SchoolLink/issues" target="_blank" rel="noopener">问题反馈</a>
+        <a href="https://github.com/Lihongbo-Learn/SchoolLink/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+      </div>
+    </div>
+    <div class="container footer-base">
+      <span>© <span id="year">2026</span> SchoolLink contributors</span>
+      <span>用 Flutter 构建 · 为校园局域网而做</span>
+    </div>
+  </footer>
+</body>
+</html>
