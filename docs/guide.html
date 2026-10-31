@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>快速开始 — 校联 SchoolLink 文档</title>
+  <meta name="description" content="校联 SchoolLink 快速开始：安装应用、部署 Hub、设置教室端、登录教师端、发送通知和接收文件。">
+  <link rel="canonical" href="https://lihongbo-learn.github.io/SchoolLink/guide.html">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="快速开始 — 校联 SchoolLink 文档">
+  <meta property="og:description" content="从安装到发送第一条全屏通知。">
+  <meta property="og:url" content="https://lihongbo-learn.github.io/SchoolLink/guide.html">
+  <meta property="og:image" content="https://lihongbo-learn.github.io/SchoolLink/assets/og-image.png">
+  <link rel="stylesheet" href="assets/docs.css">
+  <script defer src="assets/docs.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+
+  <header class="docs-header">
+    <div class="docs-header-inner">
+      <button class="docs-menu" id="docsMenu" type="button" aria-label="打开文档目录" aria-expanded="false" aria-controls="docsSidebar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+
+      <a class="docs-brand" href="index.html" aria-label="校联 SchoolLink 首页">
+        <img src="assets/app-icon.png" width="32" height="32" alt="">
+        <span class="docs-brand-text">校联 <small>文档</small></span>
+      </a>
+
+      <button class="docs-search-trigger" type="button" data-open-search aria-label="搜索文档">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <span>搜索文档</span>
+        <kbd>Ctrl K</kbd>
+      </button>
+
+      <nav class="docs-topnav" aria-label="文档导航">
+        <a href="index.html">首页</a>
+        <a href="guide.html" class="active" aria-current="page">快速开始</a>
+        <a href="develop.html">开发文档</a>
+        <a href="index.html#downloads">下载</a>
+        <a href="https://github.com/Lihongbo-Learn/SchoolLink" target="_blank" rel="noopener">GitHub ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="sidebar-backdrop" id="sidebarBackdrop" hidden></div>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar" id="docsSidebar" aria-label="文档目录">
+      <div class="sidebar-inner">
+        <a class="sidebar-overview" href="#top">快速开始</a>
+
+        <details class="sidebar-group" open>
+          <summary><span class="folder-icon" aria-hidden="true"></span>入门指南<span class="chevron" aria-hidden="true"></span></summary>
+          <nav>
+            <a class="side-link" href="#top">快速开始</a>
+            <a class="side-link" href="#install">安装与更新通道</a>
+            <a class="side-link" href="#hub">启动 Hub</a>
+            <a class="side-link" href="#classroom">教室端设置</a>
+            <a class="side-link" href="#teacher">教师端登录</a>
+            <a class="side-link" href="#notice">发送通知</a>
+            <a class="side-link" href="#files">文件接收</a>
+          </nav>
+        </details>
+
+        <details class="sidebar-group" open>
+          <summary><span class="folder-icon" aria-hidden="true"></span>部署与维护<span class="chevron" aria-hidden="true"></span></summary>
+          <nav>
+            <a class="side-link" href="#network">网络与防火墙</a>
+            <a class="side-link" href="#data">数据与备份</a>
+            <a class="side-link" href="#update">升级与重置</a>
+            <a class="side-link" href="#faq">常见问题</a>
+          </nav>
+        </details>
+
+        <details class="sidebar-group">
+          <summary><span class="folder-icon" aria-hidden="true"></span>更多<span class="chevron" aria-hidden="true"></span></summary>
+          <nav>
+            <a class="side-link" href="develop.html">开发文档</a>
+            <a class="side-link" href="index.html#downloads">下载与镜像</a>
+            <a class="side-link" href="https://github.com/Lihongbo-Learn/SchoolLink/issues" target="_blank" rel="noopener">问题反馈 ↗</a>
+          </nav>
+        </details>
+
+        <div class="sidebar-meta">校联 SchoolLink · 0.2.0 开发预览</div>
+      </div>
+    </aside>
+
+    <main class="docs-main" id="main">
+      <article class="docs-article">
+        <nav class="breadcrumb" aria-label="面包屑">
+          <a href="index.html">首页</a><span aria-hidden="true">›</span>
+          <span>目录</span><span aria-hidden="true">›</span>
+          <span>快速开始</span>
+        </nav>
+
+        <h1 id="top">快速开始</h1>
+        <div class="doc-meta">
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 12h10M4 19h13"/></svg>
+            字数 <b id="wordCount">1,600</b> 字
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v5l3 2"/></svg>
+            时长 <b id="readTime">5 分钟</b>
+          </span>
+        </div>
+
+        <div class="doc-callout">
+          <span class="callout-icon" aria-hidden="true">!</span>
+          <div>
+            <strong>已知限制</strong>
+            <p>Web 教室端无法在无用户手势时进入系统全屏，通知会以覆盖整个页面的方式展示；Android 后台保活也受系统限制。教室大屏建议使用 Windows 客户端。</p>
+          </div>
+        </div>
+
+        <p class="lead">校联由三个部分组成：Hub、教室端和教师端。Hub 是运行在常开电脑上的服务；教室端连接 Hub，接收通知和文件；教师端登录后发送内容。只使用一台 Windows 电脑也可以完成第一次体验。</p>
+
+        <h2 id="install">安装与更新通道</h2>
+        <p>所有发行文件都可以在 <a href="index.html#downloads">下载区</a>获取，提供 GitHub 直连和镜像加速两条线路。Windows 安装包已经包含 Hub，Android 只需要教师端 APK。</p>
+
+        <h3>Windows</h3>
+        <p>运行 <code>SchoolLink-Setup-0.2.0_dev.exe</code>，按向导安装即可。安装器为当前用户安装，不需要管理员权限；教室端、教师端和 Hub 在同一目录下。</p>
+        <p>安装包目前没有商业代码签名，首次运行时 Windows SmartScreen 可能提示“未知发布者”。确认文件来自本项目 Releases 后，可以选择“更多信息 → 仍要运行”。</p>
+
+        <h3>Android</h3>
+        <p>下载 Universal APK 安装。首次安装需要允许当前文件管理器或浏览器“安装未知应用”。APK 使用项目签名密钥签名；如果系统提示签名冲突，请先卸载旧版本再安装。</p>
+
+        <h3>Web</h3>
+        <p>Web 端无需安装。打开 Hub 控制台显示的地址，例如 <code>http://192.168.1.10:8421/</code>，即可进入教室端或教师端。浏览器需要与 Hub 在同一个校园局域网内。</p>
+
+        <h3>Linux</h3>
+        <p>Linux 只提供 Hub 服务端。下载 <code>SchoolLinkHub-linux.tar.gz</code> 后解压，执行 <code>sudo bash install.sh</code>；脚本会配置 systemd、数据目录和防火墙端口。</p>
+
+        <h2 id="hub">启动 Hub</h2>
+        <p>Hub 是一个纯 Dart 服务端，负责账号、班级、消息归档、文件存储和 Web 托管。建议部署在教室内或机房的一台常开电脑上，并设置开机启动。</p>
+
+        <h3>Windows</h3>
+        <p>安装后从开始菜单打开“校联 Hub 服务端”，或者在安装目录运行：</p>
+        <pre><code>SchoolLinkHub.exe --port 8421 --data "%LOCALAPPDATA%\SchoolLinkHub" --web-root ".\web"</code></pre>
+        <p>首次启动时，Hub 会检查 Windows 防火墙；如果缺少规则，会弹出一次 UAC，申请添加仅限本地子网的放行规则。拒绝 UAC 不会阻止 Hub 启动，但客户端可能无法从其他设备连接。</p>
+
+        <h3>Linux</h3>
+        <pre><code>tar -xzf SchoolLinkHub-linux.tar.gz
+cd SchoolLinkHub-linux
+sudo bash install.sh</code></pre>
+        <p>默认数据目录为 <code>/var/lib/schoollink-hub</code>，服务名为 <code>schoollink-hub</code>。脚本会自动处理 ufw 或 firewalld（如果它们处于启用状态）。</p>
+
+        <div class="doc-callout">
+          <span class="callout-icon" aria-hidden="true">!</span>
+          <div>
+            <strong>首次部署请修改默认凭据</strong>
+            <p>默认管理员 PIN 为 <code>246810</code>，学校注册码为 <code>SCHOOL26</code>。部署完成后请立即在 Hub 管理台修改，并只把注册码发给校内教师。</p>
+          </div>
+        </div>
+
+        <h2 id="classroom">教室端设置</h2>
+        <p>教室端用于教室大屏，设计目标是“开机后只接收，不出现复杂入口”。第一次启动需要完成一次不可逆的教室绑定。</p>
+        <ol class="steps-list">
+          <li><strong>连接 Hub</strong>填写 Hub 地址，或点击“发现局域网服务器”自动寻找。</li>
+          <li><strong>选择教室模式</strong>在用途页面选择“教室模式”。</li>
+          <li><strong>选择年级与班级</strong>年级为高一、高二或高三，班级为 9–16 班。</li>
+          <li><strong>确认锁定</strong>确认后，教室模式和班级不能在应用内修改；需要卸载重装或清除应用数据才能重置。</li>
+        </ol>
+        <p>完成后，教室端会自动接收教师的通知和文件，并按老师展示历史会话。普通消息和教室回复不会触发全屏。</p>
+        <p>使用 Web 教室端时，推荐用 Edge kiosk 模式打开 Hub 地址：</p>
+        <pre><code>msedge --kiosk --app=http://&lt;Hub 主机 IP&gt;:8421/</code></pre>
+
+        <h2 id="teacher">教师端登录</h2>
+        <p>教师端支持 Windows 和 Android。第一次登录需要填写 Hub 地址、姓名、PIN 和学校注册码。登录成功后，只会显示你任教的班级。</p>
+        <ul>
+          <li>姓名和 PIN 由教师首次注册时设置，之后用同一组信息登录。</li>
+          <li>学校注册码由管理员在 Hub 管理台配置。</li>
+          <li>如果找不到任教班级，请让管理员在 Hub 管理台检查班级绑定。</li>
+        </ul>
+
+        <h2 id="notice">发送通知</h2>
+        <p>教师端有两种发送方式：普通消息和全屏通知。只有通知会触发教室大屏全屏，普通消息永久保持聊天形态。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>类型</th><th>是否全屏</th><th>适用场景</th></tr></thead>
+            <tbody>
+              <tr><td>普通消息</td><td>否</td><td>日常沟通、提醒教师查看文件</td></tr>
+              <tr><td>全屏通知</td><td>是</td><td>上课提醒、临时调课、重要事项</td></tr>
+              <tr><td>教室回复</td><td>否</td><td>教室向教师确认收到</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li><strong>关闭方式</strong>：手动确认关闭，或 N 秒后自动关闭。</li>
+          <li><strong>提示音</strong>：发送时可选择是否在教室大屏播放提示音。</li>
+          <li><strong>发送范围</strong>：可发给当前班级，也可发给全部任教班级。</li>
+        </ul>
+        <p>通知送达后，教室端会保留下通知历史；教师端也可以看到每一条通知的送达方式和教室回复。</p>
+
+        <h2 id="files">文件接收</h2>
+        <p>教师在会话中附加文件并发送后，教室端会自动保存，不需要学生或值班人员确认。文件消息会显示文件大小和保存状态，并提供“打开”和“定位”入口。</p>
+        <ul>
+          <li>文件通过 Hub 分发，Hub 必须在线；当前版本不支持在 Hub 离线时直接向教室端传文件。</li>
+          <li>Hub 默认保留文件 90 天，可在 Hub 管理台配置。</li>
+          <li>发给多个班级时，Hub 只保存一份文件，教室端各自下载。</li>
+        </ul>
+
+        <h2 id="network">网络与防火墙</h2>
+        <p>Hub 和客户端必须位于能够互相访问的校园局域网。Windows 首次启动 Hub 时会自动检查防火墙；也可以手动运行 <code>tools/enable-firewall.ps1</code>。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>端口</th><th>协议</th><th>用途</th></tr></thead>
+            <tbody>
+              <tr><td>8421</td><td>TCP</td><td>Hub HTTP / WebSocket / Web</td></tr>
+              <tr><td>8421</td><td>UDP</td><td>Hub 局域网发现</td></tr>
+              <tr><td>8422</td><td>TCP</td><td>原生端直连</td></tr>
+              <tr><td>8424</td><td>UDP</td><td>原生端发现</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>防火墙规则默认只允许本地子网（LocalSubnet）访问。如果学校网络划分了多个 VLAN，需要额外放行路由，或把 Hub 放在所有教室都能访问的网段。</p>
+        <p>使用 VPN 或虚拟网卡时，浏览器和客户端可能会拿到虚拟网卡的地址。请优先填写 Hub 所在的实际局域网 IP，而不是 VPN 地址。</p>
+
+        <h2 id="data">数据与备份</h2>
+        <p>Hub 保存账号、花名册、消息索引和文件。Windows 默认数据目录是 <code>%LOCALAPPDATA%\SchoolLinkHub</code>，Linux 默认是 <code>/var/lib/schoollink-hub</code>。</p>
+        <ul>
+          <li>请定期备份 Hub 数据目录，尤其是文件和消息记录。</li>
+          <li>卸载 Windows 客户端会清除教室模式绑定和本地缓存，但会保留 Hub 数据目录。</li>
+          <li>更换 Hub 电脑时，先停止 Hub，再整体迁移数据目录。</li>
+        </ul>
+
+        <h2 id="update">升级与重置</h2>
+        <p>新版本可以直接覆盖安装，Hub 数据不会因为客户端升级而丢失。升级后重新打开客户端即可继续使用。</p>
+        <ul>
+          <li><strong>重置教室模式</strong>：卸载并重新安装 Windows 客户端，或在系统中清除应用数据。</li>
+          <li><strong>重置 Hub</strong>：停止 Hub 后备份并清空数据目录，首次启动会重新生成默认配置。</li>
+          <li><strong>换设备</strong>：教师可以在新设备登录同一账号，原设备不需要特殊解绑。</li>
+        </ul>
+
+        <h2 id="faq">常见问题</h2>
+        <h3>局域网内其他设备打不开 Hub</h3>
+        <p>检查 Hub 是否监听在 <code>0.0.0.0:8421</code>，Windows 防火墙是否放行了 8421，以及设备是否在同一子网。使用 VPN 时先确认访问的是哪个网卡地址。</p>
+        <h3>教室端选错了年级或班级</h3>
+        <p>教室模式确认后不能在界面更改。卸载并重新安装客户端，或清除应用数据后重新设置。</p>
+        <h3>Windows 提示“未知发布者”</h3>
+        <p>安装包未做商业代码签名，SmartScreen 会提示。请从本项目 Releases 下载，并核对 <code>SHA256SUMS.txt</code> 后再运行。</p>
+        <h3>Web 端点击通知没有系统全屏</h3>
+        <p>浏览器不允许没有用户手势时进入系统全屏，因此 Web 端使用页面覆盖层展示通知。需要真正的教室大屏体验时请使用 Windows 客户端。</p>
+        <h3>Android 教师端收不到消息</h3>
+        <p>Android 后台保活受厂商策略限制。请允许应用后台运行并关闭电池优化；教室端应由 Windows 客户端长期保持前台。</p>
+        <h3>文件没有自动保存</h3>
+        <p>确认 Hub 在线、教室端磁盘有空间，并且文件还没有超过 Hub 的保留期限。可以在文件消息上点击“定位”查看本地保存位置。</p>
+
+        <nav class="doc-pager" aria-label="翻页">
+          <a href="index.html">
+            <small>返回</small>
+            <strong>官网首页</strong>
+          </a>
+          <a class="next" href="develop.html">
+            <small>下一页</small>
+            <strong>开发文档 →</strong>
+          </a>
+        </nav>
+
+        <p class="doc-feedback">这篇文档对你有帮助吗？发现错误或缺少内容，欢迎在 <a href="https://github.com/Lihongbo-Learn/SchoolLink/issues" target="_blank" rel="noopener">GitHub Issues</a> 反馈。</p>
+      </article>
+    </main>
+  </div>
+
+  <div class="search-modal" id="searchModal" hidden>
+    <div class="search-backdrop" data-close-search></div>
+    <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜索文档">
+      <div class="search-field">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input id="searchInput" type="search" placeholder="搜索文档…" autocomplete="off" aria-label="搜索文档">
+        <kbd>Esc</kbd>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+      <div class="search-hint"><span>↑↓ 选择</span><span>↵ 打开</span><span>Esc 关闭</span></div>
+    </div>
+  </div>
+</body>
+</html>

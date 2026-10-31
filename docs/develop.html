@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>开发文档 — 校联 SchoolLink 文档</title>
+  <meta name="description" content="校联 SchoolLink 开发文档：开发环境、项目结构、构建运行、架构、通知系统、文件传输、混合网络、Hub 服务和参与贡献。">
+  <link rel="canonical" href="https://lihongbo-learn.github.io/SchoolLink/develop.html">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="开发文档 — 校联 SchoolLink 文档">
+  <meta property="og:description" content="了解 SchoolLink 的架构、核心模块、构建方式与参与贡献流程。">
+  <meta property="og:url" content="https://lihongbo-learn.github.io/SchoolLink/develop.html">
+  <meta property="og:image" content="https://lihongbo-learn.github.io/SchoolLink/assets/og-image.png">
+  <link rel="stylesheet" href="assets/docs.css">
+  <script defer src="assets/docs.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+
+  <header class="docs-header">
+    <div class="docs-header-inner">
+      <button class="docs-menu" id="docsMenu" type="button" aria-label="打开文档目录" aria-expanded="false" aria-controls="docsSidebar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+
+      <a class="docs-brand" href="index.html" aria-label="校联 SchoolLink 首页">
+        <img src="assets/app-icon.png" width="32" height="32" alt="">
+        <span class="docs-brand-text">校联 <small>文档</small></span>
+      </a>
+
+      <button class="docs-search-trigger" type="button" data-open-search aria-label="搜索文档">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <span>搜索文档</span>
+        <kbd>Ctrl K</kbd>
+      </button>
+
+      <nav class="docs-topnav" aria-label="文档导航">
+        <a href="index.html">首页</a>
+        <a href="guide.html">快速开始</a>
+        <a href="develop.html" class="active" aria-current="page">开发文档</a>
+        <a href="index.html#downloads">下载</a>
+        <a href="https://github.com/Lihongbo-Learn/SchoolLink" target="_blank" rel="noopener">GitHub ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="sidebar-backdrop" id="sidebarBackdrop" hidden></div>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar" id="docsSidebar" aria-label="文档目录">
+      <div class="sidebar-inner">
+        <a class="sidebar-overview" href="#top">开发文档</a>
+
+        <details class="sidebar-group" open>
+          <summary><span class="folder-icon" aria-hidden="true"></span>起步<span class="chevron" aria-hidden="true"></span></summary>
+          <nav>
+            <a class="side-link" href="#top">开发文档</a>
+            <a class="side-link" href="#environment">开发环境</a>
+            <a class="side-link" href="#structure">项目结构</a>
+            <a class="side-link" href="#build">构建与运行</a>
+          </nav>
+        </details>
+
+        <details class="sidebar-group" open>
+          <summary><span class="folder-icon" aria-hidden="true"></span>应用核心<span class="chevron" aria-hidden="true"></span></summary>
+          <nav>
+            <a class="side-link" href="#architecture">架构总览</a>
+            <a class="side-link" href="#startup">启动流程</a>
+            <a class="side-link" href="#notices">通知系统</a>
+            <a class="side-link" href="#files">文件传输</a>
+            <a class="side-link" href="#network">混合网络</a>
+            <a class="side-link" href="#hub">Hub 服务</a>
+            <a class="side-link" href="#desktop">桌面与平台</a>
+          </nav>
+        </details>
+
+        <details class="sidebar-group" open>
+          <summary><span class="folder-icon" aria-hidden="true"></span>参与<span class="chevron" aria-hidden="true"></span></summary>
+          <nav>
+            <a class="side-link" href="#contributing">参与贡献</a>
+            <a class="side-link" href="#docs">文档维护</a>
+          </nav>
+        </details>
+
+        <details class="sidebar-group">
+          <summary><span class="folder-icon" aria-hidden="true"></span>延伸<span class="chevron" aria-hidden="true"></span></summary>
+          <nav>
+            <a class="side-link" href="guide.html">快速开始</a>
+            <a class="side-link" href="index.html#downloads">下载与镜像</a>
+            <a class="side-link" href="https://github.com/Lihongbo-Learn/SchoolLink" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="side-link" href="https://github.com/Lihongbo-Learn/SchoolLink/issues" target="_blank" rel="noopener">问题反馈 ↗</a>
+          </nav>
+        </details>
+
+        <div class="sidebar-meta">校联 SchoolLink · 0.2.0 开发预览</div>
+      </div>
+    </aside>
+
+    <main class="docs-main" id="main">
+      <article class="docs-article">
+        <nav class="breadcrumb" aria-label="面包屑">
+          <a href="index.html">首页</a><span aria-hidden="true">›</span>
+          <span>目录</span><span aria-hidden="true">›</span>
+          <span>开发文档</span>
+        </nav>
+
+        <h1 id="top">开发文档</h1>
+        <div class="doc-meta">
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 12h10M4 19h13"/></svg>
+            字数 <b id="wordCount">2,400</b> 字
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v5l3 2"/></svg>
+            时长 <b id="readTime">7 分钟</b>
+          </span>
+        </div>
+
+        <div class="doc-callout info">
+          <span class="callout-icon" aria-hidden="true">i</span>
+          <div>
+            <strong>文档随 0.2.0 开发预览更新</strong>
+            <p>功能和代码结构仍可能调整。如果你发现过时内容，欢迎在 <a href="https://github.com/Lihongbo-Learn/SchoolLink/issues" target="_blank" rel="noopener">GitHub Issues</a> 指出。</p>
+          </div>
+        </div>
+
+        <p class="lead">这份文档写给两类读者：想参与 SchoolLink 开发的开发者，以及希望了解 Hub 和网络行为、准备做二次开发或运维集成的开发者。</p>
+
+        <ol>
+          <li><strong>项目贡献者</strong>：需要了解项目结构、构建流程、核心模块和提交流程。建议先完成一次本地构建，再阅读核心模块。</li>
+          <li><strong>集成/运维开发者</strong>：需要理解 Hub 的账号、消息、文件和网络模型。可以从“架构总览”和“Hub 服务”开始。</li>
+        </ol>
+
+        <h3>这份文档不写什么</h3>
+        <ul>
+          <li><strong>用户操作手册</strong>：安装、设置教室端和发送通知请看 <a href="guide.html">快速开始</a>。</li>
+          <li><strong>完整部署清单</strong>：防火墙、Linux 安装、数据备份也收录在快速开始。</li>
+          <li><strong>完整 API 参考</strong>：当前以 <code>packages/hub</code> 和 <code>packages/protocol</code> 的源码为准；后续会补充自动生成的接口文档。</li>
+        </ul>
+
+        <h2 id="environment">开发环境</h2>
+        <p>项目的主要部分使用 Dart 和 Flutter。Windows 桌面、Android 和 Web 共用同一套应用代码，Hub 是独立的纯 Dart 包。</p>
+        <ul>
+          <li>Flutter 3.47+ / Dart 3.13+</li>
+          <li>Windows 桌面：Visual Studio（含“使用 C++ 的桌面开发”）</li>
+          <li>Android：Android SDK、NDK、Java 17+</li>
+          <li>Windows 安装包：Inno Setup 6（可用 <code>ISCC_PATH</code> 指定）</li>
+          <li>浏览器调试：Edge 或 Chrome；Web 构建不需要 Node</li>
+        </ul>
+        <p>安装完成后先检查工具链：</p>
+        <pre><code>flutter doctor -v</code></pre>
+        <p>国内网络下如果依赖下载较慢，可以为当前终端设置镜像后再执行 <code>flutter pub get</code>：</p>
+        <pre><code>PUB_HOSTED_URL=https://pub.flutter-io.cn
+FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</code></pre>
+
+        <h2 id="structure">项目结构</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>路径</th><th>作用</th></tr></thead>
+            <tbody>
+              <tr><td><code>apps/app</code></td><td>Flutter 客户端，包含 Windows、Android、Web 平台工程</td></tr>
+              <tr><td><code>packages/protocol</code></td><td>共享消息模型、常量、PIN 哈希和 HMAC 签名</td></tr>
+              <tr><td><code>packages/hub</code></td><td>纯 Dart Hub 服务端、文件存储和管理台</td></tr>
+              <tr><td><code>installer</code></td><td>Inno Setup 脚本与 Linux 一键安装脚本</td></tr>
+              <tr><td><code>tools</code></td><td>构建、打包和防火墙脚本</td></tr>
+              <tr><td><code>docs</code></td><td>官网与文档站（GitHub Pages）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>客户端入口在 <code>apps/app/lib/main.dart</code>，根组件和页面切换在 <code>lib/src/app.dart</code>，应用状态集中由 <code>lib/src/state/app_controller.dart</code> 管理。网络与平台能力分别在 <code>services</code> 目录下按平台拆分。</p>
+
+        <h2 id="build">构建与运行</h2>
+        <p>开发 Hub 前先构建一份 Web 产物，Hub 会直接托管它：</p>
+        <pre><code>cd apps/app
+flutter pub get
+flutter build web --release --no-web-resources-cdn
+
+cd ../../packages/hub
+dart pub get
+dart run bin/server.dart \
+  --port 8421 \
+  --data ../../data \
+  --web-root ../../apps/app/build/web</code></pre>
+        <p>运行客户端：</p>
+        <pre><code>cd apps/app
+flutter run -d windows
+# Android 设备连接后
+flutter run</code></pre>
+        <p>构建三端产物：</p>
+        <pre><code>flutter build windows --release
+flutter build apk --release
+flutter build web --release --no-web-resources-cdn</code></pre>
+        <p>Windows 打包会生成安装器、便携包、Hub 包和校验和：</p>
+        <pre><code>powershell -ExecutionPolicy Bypass -File tools/package.ps1
+# 已有构建产物时只重新打包
+powershell -ExecutionPolicy Bypass -File tools/package.ps1 -SkipBuild</code></pre>
+        <p>Android release 构建需要 <code>apps/app/android/key.properties</code> 和对应的 keystore；没有签名配置时会回退到调试签名。不要把签名文件和密码提交到仓库。</p>
+        <p>运行测试：</p>
+        <pre><code>cd packages/hub && dart test
+cd ../../apps/app && flutter analyze && flutter test</code></pre>
+
+        <h2 id="architecture">架构总览</h2>
+        <p>SchoolLink 采用“直连优先 + Hub 归档”的混合网络。原生端可以互相发现并直接传递消息；同时每条消息都会向 Hub 归档，用于历史、离线补发和 Web 端。</p>
+        <div class="arch" aria-label="架构示意图">
+          <div class="arch-row">
+            <div class="arch-node"><strong>教师端</strong><small>Windows / Android / Web</small></div>
+            <div class="arch-link"><span>REST / WS</span></div>
+            <div class="arch-node hub"><strong>Hub</strong><small>Windows / Linux</small></div>
+            <div class="arch-link"><span>REST / WS</span></div>
+            <div class="arch-node"><strong>教室端</strong><small>Windows / Web</small></div>
+          </div>
+          <div class="arch-direct">原生端之间：局域网直连 WebSocket + HMAC（Web 教室端除外）</div>
+        </div>
+        <p>Hub 同时承担消息归档、文件存储、账号与花名册、Web 静态托管。客户端通过 UUID 去重，网络恢复后由 outbox 重试和 Hub 历史补齐。</p>
+
+        <h2 id="startup">启动流程</h2>
+        <p>应用启动后先加载本地 profile 和持久化状态，再判断当前处于未配置、教室端、教师端还是已锁定教室。未完成首次配置时会进入引导页；完成后进入对应的工作台。</p>
+        <ul>
+          <li><code>main.dart</code> 初始化 Flutter 绑定、平台服务和根应用。</li>
+          <li><code>AppController.load()</code> 读取 profile、教室绑定、教师登录态和本地缓存。</li>
+          <li>Windows 平台在启动时初始化窗口、托盘和关闭到托盘行为。</li>
+          <li>已配置的客户端尝试连接 Hub、启动局域网发现并恢复消息队列。</li>
+          <li>教室模式绑定一旦写入，只能通过清除应用数据或卸载重装重置。</li>
+        </ul>
+
+        <h2 id="notices">通知系统</h2>
+        <p>消息分为普通消息和全屏通知。通知额外携带标题、关闭策略、自动关闭秒数和提示音设置；教室端只对未确认且仍然有效的新通知触发全屏覆盖层。</p>
+        <ul>
+          <li><strong>关闭策略</strong>由教师发送时决定，支持手动确认或自动关闭。</li>
+          <li><strong>提示音</strong>在通知展示时播放，可按条配置。</li>
+          <li><strong>历史</strong>保留在会话中；通知确认后仍可在历史里查看。</li>
+          <li><strong>去重</strong>基于消息 UUID，避免直连和 Hub 归档同时到达时重复展示。</li>
+        </ul>
+        <p>相关实现位于 <code>lib/src/ui/notice/notice_overlay.dart</code>、<code>lib/src/ui/chat/chat_panel.dart</code> 和 <code>lib/src/state/app_controller.dart</code>。</p>
+
+        <h2 id="files">文件传输</h2>
+        <p>文件由教师上传到 Hub，Hub 保存元数据和内容，教室端收到文件消息后自动下载并保存。一次上传可以在多个班级复用，不需要为每个班级重复存储。</p>
+        <ul>
+          <li>Hub 文件元数据包含名称、大小、SHA-256 和 MIME 类型。</li>
+          <li>教室端自动保存并展示“打开 / 定位”入口。</li>
+          <li>文件默认保留 90 天，可通过 Hub 配置调整。</li>
+          <li>当前版本文件不参与原生端直连；Hub 离线时无法完成文件分发。</li>
+        </ul>
+
+        <h2 id="network">混合网络</h2>
+        <p>原生端启动后会通过 UDP 尝试发现同一网络内的 Hub 和其他客户端。发现成功后建立 WebSocket 连接，消息在发送前使用班级 mesh key 做 HMAC 签名。</p>
+        <ul>
+          <li>直连可用时优先直连，同时异步向 Hub 归档。</li>
+          <li>直连失败、对方离线或处于不同网络时自动经由 Hub。</li>
+          <li>发送队列会持久化，重连后按顺序重试；重复消息由 UUID 去重。</li>
+          <li>Web 端不具备直连能力，始终通过 Hub 收发。</li>
+        </ul>
+        <p>端口和防火墙配置见 <a href="guide.html#network">快速开始 · 网络与防火墙</a>。原生端发现和消息签名实现位于 <code>lib/src/services/peer_service.dart</code> 与 <code>packages/protocol</code>。</p>
+
+        <h2 id="hub">Hub 服务</h2>
+        <p>Hub 使用 <code>shelf</code> 处理 HTTP 和 WebSocket，使用 <code>sembast</code> 保存结构化数据，文件内容独立存储。PIN 使用 PBKDF2 哈希，直连签名使用 HMAC；服务端不会保存明文 PIN。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>接口</th><th>说明</th></tr></thead>
+            <tbody>
+              <tr><td><code>POST /v1/teachers/register</code></td><td>教师注册并绑定任教班级</td></tr>
+              <tr><td><code>POST /v1/teachers/login</code></td><td>姓名 + PIN 登录</td></tr>
+              <tr><td><code>GET /v1/bootstrap</code></td><td>获取班级、会话和初始状态</td></tr>
+              <tr><td><code>POST /v1/messages</code></td><td>归档普通消息或通知</td></tr>
+              <tr><td><code>POST /v1/files</code></td><td>创建文件元数据并上传内容</td></tr>
+              <tr><td><code>/v1/ws</code></td><td>实时消息 WebSocket</td></tr>
+              <tr><td><code>/v1/admin/*</code></td><td>管理员设置、花名册和统计</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Hub 数据目录默认独立于客户端安装目录，卸载客户端不会删除它。完整路由和字段定义以 <code>packages/hub/lib/src/server.dart</code> 与 <code>packages/protocol/lib/src/models.dart</code> 为准。</p>
+
+        <h2 id="desktop">桌面与平台</h2>
+        <p>Windows 客户端使用 <code>window_manager</code> 实现无边框自绘标题栏，使用系统托盘提供打开、隐藏和退出；关闭按钮默认隐藏到托盘而不是退出。Hub 启动时会自动检查 Windows 防火墙，必要时申请一次 UAC。</p>
+        <ul>
+          <li><strong>Android</strong>：教师端适合手机和平板；后台保活受系统限制，教室端应使用 Windows。</li>
+          <li><strong>Web</strong>：由 Hub 托管，无法使用系统级全屏和 P2P，仅作为辅助入口。</li>
+          <li><strong>Windows</strong>：教室大屏优先方案，支持托盘、自动保存文件和更完整的全屏体验。</li>
+        </ul>
+
+        <h2 id="contributing">参与贡献</h2>
+        <p>欢迎提交 Issue 和 Pull Request。提交前请先确认变更范围，尽量把功能、修复和重构分开。</p>
+        <ol class="steps-list">
+          <li><strong>Fork 并创建分支</strong>从 <code>main</code> 创建具有描述性的分支。</li>
+          <li><strong>本地验证</strong>运行 <code>dart test</code>、<code>flutter analyze</code> 和 <code>flutter test</code>。</li>
+          <li><strong>检查敏感文件</strong>不要提交 keystore、<code>key.properties</code>、本机数据目录或测试截图。</li>
+          <li><strong>提交 PR</strong>说明行为变化、验证方式，以及是否影响桌面/移动/Web。</li>
+        </ol>
+        <p>代码风格以现有源码为准；新增页面或交互时，请同时考虑键盘焦点、窄屏布局和 <code>prefers-reduced-motion</code>。</p>
+
+        <h2 id="docs">文档维护</h2>
+        <p>文档站是纯静态页面，位于 <code>docs/</code>。新增章节时请同步更新页面侧边栏和 <code>docs/assets/docs.js</code> 中的搜索索引，并在窄屏下检查目录抽屉与代码块横向滚动。</p>
+        <p>官网不放置产品截图；页面使用文字、代码块、表格和 HTML 示意图保持可维护性。修改后本地打开 <code>guide.html</code> 或运行任意静态服务器即可预览。</p>
+
+        <nav class="doc-pager" aria-label="翻页">
+          <a href="guide.html">
+            <small>上一页</small>
+            <strong>← 快速开始</strong>
+          </a>
+          <a class="next" href="https://github.com/Lihongbo-Learn/SchoolLink" target="_blank" rel="noopener">
+            <small>继续</small>
+            <strong>查看源码 →</strong>
+          </a>
+        </nav>
+
+        <p class="doc-feedback">发现文档错误或想补充内容？欢迎在 <a href="https://github.com/Lihongbo-Learn/SchoolLink/issues" target="_blank" rel="noopener">GitHub Issues</a> 反馈，或直接提交 Pull Request。</p>
+      </article>
+    </main>
+  </div>
+
+  <div class="search-modal" id="searchModal" hidden>
+    <div class="search-backdrop" data-close-search></div>
+    <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜索文档">
+      <div class="search-field">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input id="searchInput" type="search" placeholder="搜索文档…" autocomplete="off" aria-label="搜索文档">
+        <kbd>Esc</kbd>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+      <div class="search-hint"><span>↑↓ 选择</span><span>↵ 打开</span><span>Esc 关闭</span></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -4,7 +4,7 @@
 
 教师可以发送全屏通知、文件和普通消息；教室大屏自动接收文件、集中留存通知历史，普通聊天和教室回复不会触发全屏。
 
-[官网](https://lihongbo-learn.github.io/SchoolLink/) · [下载 Releases](https://github.com/Lihongbo-Learn/SchoolLink/releases) · [问题反馈](https://github.com/Lihongbo-Learn/SchoolLink/issues)
+[官网](https://lihongbo-learn.github.io/SchoolLink/) · [快速开始](https://lihongbo-learn.github.io/SchoolLink/guide.html) · [开发文档](https://lihongbo-learn.github.io/SchoolLink/develop.html) · [下载 Releases](https://github.com/Lihongbo-Learn/SchoolLink/releases) · [问题反馈](https://github.com/Lihongbo-Learn/SchoolLink/issues)
 
 > 当前版本：`0.2.0 开发预览`。功能和接口仍可能变化。
 
